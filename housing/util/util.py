@@ -1,5 +1,5 @@
 import yaml
-from housing.exceptions import HousingException
+from housing.exception import HousingException
 import os, sys
 
 def read_yaml_file(file_path :str)->dict:
