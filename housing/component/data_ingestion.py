@@ -19,7 +19,7 @@ class DataIngestion:
         except Exception as e:
             raise HousingException(e, sys) from e
         
-    def download_housing_data(self)-> str:
+    def download_housing_data(self,)-> str:
         try:
             # Extract remote url to download dataset
             download_url = self.data_ingestion_config.dataset_download_url
