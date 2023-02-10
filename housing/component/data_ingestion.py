@@ -11,15 +11,15 @@ from sklearn.model_selection import StratifiedShuffleSplit
 
 class DataIngestion:
 
-    def __init__(self, data_ingestion_config:DataIngestionConfig):
+    def __init__(self, data_ingestion_config:DataIngestionConfig ):
         try:
-            logging.info(f"{'='*20} Data Ingestion Log Started {'='*20}")
-            self.data_ingestion_config = data_ingestion_config
+            logging.info(f"{'>>'*20}Data Ingestion log started.{'<<'*20} ")
+            self.data_ingestion_config  = data_ingestion_config
 
         except Exception as e:
             raise HousingException(e, sys) from e
         
-    def download_housing_data(self,)-> str:
+    def download_housing_data(self)-> str:
         try:
             # Extract remote url to download dataset
             download_url = self.data_ingestion_config.dataset_download_url
