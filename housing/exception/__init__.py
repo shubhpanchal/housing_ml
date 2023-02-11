@@ -23,11 +23,10 @@ class HousingException(Exception):
         try_block_line_number = exec_tb.tb_lineno
         file_name = exec_tb.tb_frame.f_code.co_filename
         error_message = f"""
-        Error occured in Script:
-        [ {file_name} ] at
-        try block line number : [ {try_block_line_number} ] and exception block line number :
-        [ {exception_block_line_number}]
-        error message : [ {error_message} ]
+        Error occured in script: 
+        [ {file_name} ] at 
+        try block line number: [{try_block_line_number}] and exception block line number: [{exception_block_line_number}] 
+        error message: [{error_message}]
         """
         return error_message
     
