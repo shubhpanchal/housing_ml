@@ -4,7 +4,7 @@ gunicorn
 sklearn
 pandas
 PyYAML
-scikit-learn
-six
 evidently
+dill
+matplotlib
 -e .

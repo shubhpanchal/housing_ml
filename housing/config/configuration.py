@@ -1,3 +1,5 @@
+
+
 from housing.entity.config_entity import DataIngestionConfig, DataTransformationConfig,DataValidationConfig,   \
 ModelTrainerConfig,ModelEvaluationConfig,ModelPusherConfig,TrainingPipelineConfig
 from housing.util.util import read_yaml_file
@@ -178,5 +180,36 @@ class Configuartion:
             )
             logging.info(f"Model trainer config: {model_trainer_config}")
             return model_trainer_config
+        except Exception as e:
+            raise HousingException(e,sys) from e
+        
+    def get_model_evaluation_config(self)-> ModelEvaluationConfig:
+        try:
+            model_evaluation_config = self.config_info[MODEL_EVALUATION_CONFIG_KEY]
+            artifact_dir = os.path.join(self.training_pipeline_config.artifact_dir,
+                                        MODEL_EVALUATION_ARTIFACT_DIR,)
+            
+            model_evaluation_file_path = os.path.join(artifact_dir,
+                                                      model_evaluation_config[MODEL_EVALUATION_FILE_NAME_KEY])
+            response = ModelEvaluationConfig(model_evaluation_file_path=model_evaluation_file_path,
+                                             time_stamp=self.time_stamp)
+            
+            logging.info(f"Model Evaluation Config : {response}")
+            return response
+        except Exception as e:
+            raise HousingException(e, sys) from e
+        
+        
+    def get_training_pipeline_config(self) ->TrainingPipelineConfig:
+        try:
+            training_pipeline_config = self.config_info[TRAINING_PIPELINE_CONFIG_KEY]
+            artifact_dir = os.path.join(ROOT_DIR,
+            training_pipeline_config[TRAINING_PIPELINE_NAME_KEY],
+            training_pipeline_config[TRAINING_PIPELINE_ARTIFACT_DIR_KEY]
+            )
+
+            training_pipeline_config = TrainingPipelineConfig(artifact_dir=artifact_dir)
+            logging.info(f"Training pipleine config: {training_pipeline_config}")
+            return training_pipeline_config
         except Exception as e:
             raise HousingException(e,sys) from e
